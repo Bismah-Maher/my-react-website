@@ -1,0 +1,1191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+/* ================================
+   MENU
+================================ */
+
+.menu-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 110px 6%;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(201, 58, 47, 0.08),
+      transparent 30%
+    ),
+    #080807;
+  color: #f5f0e8;
+}
+
+.menu-heading {
+  max-width: 1200px;
+  margin: 0 auto 45px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.menu-label {
+  color: #c93a2f;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 15px;
+}
+
+.menu-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(45px, 5vw, 75px);
+  line-height: 0.95;
+}
+
+.menu-heading h2 span {
+  color: #d9b26f;
+}
+
+.cart-button {
+  background: #c93a2f;
+  color: white;
+
+  padding: 13px 22px;
+  border-radius: 100px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  transition: 0.3s ease;
+}
+
+.cart-button:hover {
+  transform: translateY(-3px);
+}
+
+.cart-count {
+  background: white;
+  color: #c93a2f;
+
+  min-width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+/* CATEGORY */
+
+.category-row {
+  max-width: 1200px;
+  margin: 0 auto 45px;
+
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  background: rgba(255,255,255,0.05);
+  color: rgba(245,240,232,0.6);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  padding: 12px 20px;
+  border-radius: 100px;
+
+  font-size: 12px;
+
+  transition: 0.3s ease;
+}
+
+.category-button:hover {
+  color: white;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.category-button.active {
+  background: #c93a2f;
+  color: white;
+  border-color: #c93a2f;
+}
+
+/* GRID */
+
+.menu-grid {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* CARD */
+
+.food-card {
+  overflow: hidden;
+
+  background: #121211;
+
+  border: 1px solid rgba(255,255,255,0.09);
+
+  border-radius: 24px;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+
+  animation: cardAppear 0.5s ease both;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201,58,47,0.4);
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.food-image-wrapper {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.food-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.5s ease;
+}
+
+.food-card:hover .food-image {
+  transform: scale(1.05);
+}
+
+.heart-button {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background: rgba(0,0,0,0.65);
+  color: white;
+
+  font-size: 21px;
+
+  backdrop-filter: blur(10px);
+}
+
+.food-info {
+  padding: 22px;
+}
+
+.food-category {
+  color: #c93a2f;
+
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  margin-bottom: 8px;
+}
+
+.food-info h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 25px;
+
+  margin-bottom: 25px;
+}
+
+.food-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.food-bottom strong {
+  color: #d9b26f;
+  font-size: 15px;
+}
+
+.add-button {
+  background: #c93a2f;
+  color: white;
+
+  padding: 10px 16px;
+
+  border-radius: 100px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.add-button:hover {
+  transform: scale(1.05);
+}
+
+/* QUANTITY */
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  background: #c93a2f;
+
+  border-radius: 100px;
+
+  padding: 5px 8px;
+}
+
+.quantity-control button {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background: white;
+  color: #c93a2f;
+
+  font-weight: bold;
+}
+
+.quantity-control span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ================================
+   CART OVERLAY
+================================ */
+
+.cart-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  background: rgba(0,0,0,0.7);
+
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-panel {
+  width: min(450px, 92vw);
+  height: 100%;
+
+  background: #111110;
+
+  border-left: 1px solid rgba(255,255,255,0.1);
+
+  padding: 35px 28px;
+
+  overflow-y: auto;
+
+  animation: cartSlide 0.4s ease;
+}
+
+@keyframes cartSlide {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 35px;
+}
+
+.cart-header p {
+  color: #c93a2f;
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+
+.cart-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  margin-top: 7px;
+}
+
+.close-cart {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.07);
+  color: white;
+
+  font-size: 25px;
+}
+
+/* CART ITEM */
+
+.cart-item {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.cart-item img {
+  width: 70px;
+  height: 70px;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+.cart-item-info p {
+  color: #d9b26f;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.cart-item > strong {
+  color: #d9b26f;
+  font-size: 12px;
+}
+
+/* CART QUANTITY */
+
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-quantity button {
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  background: #c93a2f;
+  color: white;
+}
+
+.cart-quantity span {
+  font-size: 11px;
+}
+
+/* TOTAL */
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 30px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255,255,255,0.1);
+
+  font-size: 18px;
+}
+
+.cart-total strong {
+  color: #d9b26f;
+}
+
+.checkout-button {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border-radius: 100px;
+
+  background: #c93a2f;
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.checkout-button:hover {
+  transform: translateY(-2px);
+}
+
+/* EMPTY CART */
+
+.empty-cart {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-cart div {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.empty-cart h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.empty-cart p {
+  color: rgba(255,255,255,0.5);
+  margin-top: 8px;
+}
+
+/* FLOATING CART */
+
+.floating-cart {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 17px;
+
+  border-radius: 18px;
+
+  background: rgba(22,22,21,0.95);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: white;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+
+  backdrop-filter: blur(15px);
+
+  animation: cartPop 0.4s ease;
+}
+
+@keyframes cartPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floating-cart > span:first-child {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #c93a2f;
+}
+
+.floating-cart div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.floating-cart small {
+  color: rgba(255,255,255,0.5);
+  font-size: 9px;
+}
+
+.floating-cart strong {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.floating-cart > span:last-child {
+  color: #d9b26f;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 800px) {
+
+  .menu-section {
+    padding: 90px 18px;
+  }
+
+  .menu-heading {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .menu-heading h2 {
+    font-size: 42px;
+  }
+
+  .cart-button {
+    padding: 11px 15px;
+    font-size: 11px;
+  }
+
+  .category-row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .category-button {
+    flex-shrink: 0;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .food-image-wrapper {
+    height: 180px;
+  }
+
+  .food-info {
+    padding: 14px;
+  }
+
+  .food-info h3 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .food-category {
+    font-size: 7px;
+  }
+
+  .food-bottom strong {
+    font-size: 11px;
+  }
+
+  .add-button {
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+
+  .quantity-control {
+    gap: 6px;
+    padding: 4px 6px;
+  }
+
+  .quantity-control button {
+    width: 22px;
+    height: 22px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .food-image-wrapper {
+    height: 145px;
+  }
+
+  .food-info h3 {
+    font-size: 15px;
+  }
+
+  .food-info {
+    padding: 11px;
+  }
+
+  .heart-button {
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .floating-cart {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    justify-content: space-between;
+  }
+
+}
+
+/* =====================================================
+   BURGER STORY / SCROLL EXPERIENCE
+===================================================== */
+
+.burger-story {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  min-height: 700px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(126, 55, 28, 0.12),
+      transparent 32%
+    ),
+    #050505;
+
+  color: #f5f0e8;
+
+  isolation: isolate;
+}
+
+
+/* =====================================================
+   CANVAS
+===================================================== */
+
+.burger-canvas-wrapper {
+  position: absolute;
+
+  width: min(76vw, 1100px);
+  height: min(76vh, 620px);
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.burger-canvas {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =====================================================
+   BURGER GLOW
+===================================================== */
+
+.burger-glow {
+  position: absolute;
+
+  width: 55%;
+  height: 55%;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(205, 84, 38, 0.12),
+      transparent 68%
+    );
+
+  filter: blur(40px);
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.burger-story-label {
+  position: absolute;
+
+  top: 42px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  z-index: 10;
+
+  text-align: center;
+}
+
+
+.burger-story-label span {
+  font-size: 8px;
+
+  letter-spacing: 5px;
+
+  color: rgba(245, 240, 232, 0.5);
+
+  margin-bottom: 5px;
+}
+
+
+.burger-story-label strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 24px;
+
+  letter-spacing: 1px;
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   LEFT + RIGHT STORY
+===================================================== */
+
+.burger-story-left,
+.burger-story-right {
+  position: absolute;
+
+  top: 50%;
+
+  width: 230px;
+
+  transform: translateY(-50%);
+
+  z-index: 5;
+
+  transition: opacity 0.3s ease;
+}
+
+
+.burger-story-left {
+  left: 7%;
+}
+
+
+.burger-story-right {
+  right: 7%;
+}
+
+
+/* =====================================================
+   STORY TEXT
+===================================================== */
+
+.story-number {
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  color: #c93a2f;
+
+  margin-bottom: 18px;
+}
+
+
+.story-small {
+  font-size: 9px;
+
+  letter-spacing: 4px;
+
+  color: rgba(245, 240, 232, 0.42);
+
+  margin-bottom: 18px;
+}
+
+
+.burger-story-left h2,
+.burger-story-right h2 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 40px;
+
+  line-height: 0.98;
+
+  font-weight: 500;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 22px;
+}
+
+
+.story-description {
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  color: rgba(245, 240, 232, 0.5);
+
+  max-width: 210px;
+}
+
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.burger-scroll {
+  position: absolute;
+
+  bottom: 32px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 10;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.burger-scroll span {
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  color: rgba(245, 240, 232, 0.35);
+}
+
+
+.burger-scroll-line {
+  width: 1px;
+
+  height: 45px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+
+.burger-scroll-line span {
+  position: absolute;
+
+  width: 100%;
+
+  height: 50%;
+
+  left: 0;
+
+  top: -100%;
+
+  background: #f5f0e8;
+
+  animation: burgerScrollLine 1.7s infinite;
+}
+
+
+@keyframes burgerScrollLine {
+
+  0% {
+    top: -100%;
+  }
+
+  100% {
+    top: 200%;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .burger-story {
+    min-height: 650px;
+  }
+
+
+  .burger-story-label {
+    top: 85px;
+  }
+
+
+  .burger-story-label strong {
+    font-size: 20px;
+  }
+
+
+  .burger-canvas-wrapper {
+
+    width: 105vw;
+
+    height: 58vh;
+
+    max-height: 500px;
+
+    top: 52%;
+
+  }
+
+
+  .burger-story-left,
+  .burger-story-right {
+
+    width: 160px;
+
+    top: 25%;
+
+  }
+
+
+  .burger-story-left {
+    left: 6%;
+  }
+
+
+  .burger-story-right {
+    right: 6%;
+  }
+
+
+  .burger-story-left h2,
+  .burger-story-right h2 {
+
+    font-size: 25px;
+
+  }
+
+
+  .story-description {
+
+    font-size: 10px;
+
+  }
+
+
+  .story-small {
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+  }
+
+
+  .story-number {
+
+    font-size: 8px;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .burger-story-label {
+    top: 80px;
+  }
+
+
+  .burger-canvas-wrapper {
+
+    width: 125vw;
+
+    height: 52vh;
+
+    top: 55%;
+
+  }
+
+
+  .burger-story-left,
+  .burger-story-right {
+
+    top: 24%;
+
+    width: 125px;
+
+  }
+
+
+  .burger-story-left {
+    left: 5%;
+  }
+
+
+  .burger-story-right {
+    right: 5%;
+  }
+
+
+  .burger-story-left h2,
+  .burger-story-right h2 {
+
+    font-size: 20px;
+
+  }
+
+
+  .story-description {
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+  }
+
+
+  .story-small {
+
+    margin-bottom: 10px;
+
+  }
+
+
+  .burger-scroll {
+
+    bottom: 20px;
+
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONE
+===================================================== */
+
+@media (max-width: 430px) {
+
+  .burger-story-left,
+  .burger-story-right {
+
+    width: 105px;
+
+  }
+
+
+  .burger-story-left h2,
+  .burger-story-right h2 {
+
+    font-size: 17px;
+
+  }
+
+
+  .story-description {
+
+    font-size: 8px;
+
+  }
+
+
+  .burger-canvas-wrapper {
+
+    width: 135vw;
+
+  }
+
+}
