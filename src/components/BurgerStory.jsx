@@ -8,7 +8,7 @@ const TOTAL_FRAMES = 224;
 
 function getFramePath(index) {
   const number = String(index + 1).padStart(3, "0");
-  return `/images/burger-sequence/ezgif-frame-${number}.jpg`;
+ return `${process.env.PUBLIC_URL}/images/burger-sequence/ezgif-frame-${number}.jpg`;
 }
 
 function BurgerStory() {
@@ -251,11 +251,6 @@ function BurgerStory() {
 
       <div className="burger-story-left">
 
-        <span className="story-number">01</span>
-
-        <p className="story-small">
-          MADE FRESH
-        </p>
 
         <h2>
           Crafted
@@ -292,11 +287,7 @@ function BurgerStory() {
 
       <div className="burger-story-right">
 
-        <span className="story-number">02</span>
-
-        <p className="story-small">
-          THE SIGNATURE
-        </p>
+  
 
         <h2>
           Built for

@@ -1,0 +1,355 @@
+/* =========================================
+   REVIEWS SECTION
+========================================= */
+
+.reviews-section {
+  position: relative;
+  width: 100%;
+  padding: 140px 6% 130px;
+  background: #050505;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+
+/* =========================================
+   SMALL LABEL
+========================================= */
+
+.reviews-label {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.reviews-label span {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #eaa52c;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.reviews-title {
+  margin: 0;
+  text-align: center;
+
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 0.95;
+
+  font-weight: 500;
+  letter-spacing: -3px;
+}
+
+.reviews-title span {
+  color: #eaa52c;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.reviews-subtitle {
+  max-width: 560px;
+  margin: 25px auto 70px;
+
+  text-align: center;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  color: #a9a9a9;
+}
+
+
+/* =========================================
+   SLIDER
+========================================= */
+
+.reviews-slider {
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TRACK
+========================================= */
+
+.reviews-track {
+  display: flex;
+  width: 100%;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.review-card {
+  flex: 0 0 33.333333%;
+
+  padding: 42px;
+
+  box-sizing: border-box;
+}
+
+
+/* Actual card background */
+
+.review-card::before {
+  content: "";
+  display: block;
+
+  position: absolute;
+}
+
+
+/* We need a wrapper-like appearance */
+
+.review-card {
+  margin: 0 10px;
+
+  background: #111111;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 24px;
+
+  min-height: 250px;
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    background 0.4s ease;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.review-card:hover {
+  transform: translateY(-8px);
+
+  background: #151515;
+
+  border-color: rgba(234, 165, 44, 0.35);
+}
+
+
+/* =========================================
+   PROFILE TOP
+========================================= */
+
+.review-top {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+
+/* =========================================
+   PROFILE IMAGE
+========================================= */
+
+.review-avatar {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 2px solid rgba(234, 165, 44, 0.5);
+}
+
+
+/* =========================================
+   PERSON
+========================================= */
+
+.review-person h3 {
+  margin: 0 0 7px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+.review-stars {
+  color: #eaa52c;
+
+  font-size: 14px;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================================
+   REVIEW TEXT
+========================================= */
+
+.review-text {
+  margin: 0;
+
+  max-width: 430px;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  color: #bcbcbc;
+}
+
+
+/* =========================================
+   QUOTE MARK
+========================================= */
+
+.review-mark {
+  margin-top: 22px;
+
+  font-family: Georgia, serif;
+
+  font-size: 42px;
+
+  line-height: 20px;
+
+  color: #eaa52c;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================
+   DOTS
+========================================= */
+
+.review-dots {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 55px;
+}
+
+
+/* =========================================
+   DOT
+========================================= */
+
+.review-dot {
+  width: 7px;
+  height: 7px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #555555;
+
+  cursor: pointer;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* ACTIVE DOT */
+
+.review-dot.active {
+  width: 28px;
+
+  border-radius: 10px;
+
+  background: #eaa52c;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .reviews-section {
+    padding: 110px 5% 100px;
+  }
+
+  .review-card {
+    flex: 0 0 50%;
+  }
+
+  .reviews-track {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .reviews-section {
+    padding: 90px 20px 90px;
+  }
+
+  .reviews-title {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+
+  .reviews-subtitle {
+    margin-bottom: 45px;
+    font-size: 14px;
+  }
+
+  .review-card {
+    flex: 0 0 100%;
+
+    margin: 0;
+
+    padding: 30px;
+
+    min-height: 260px;
+  }
+
+  .review-avatar {
+    width: 52px;
+    height: 52px;
+  }
+
+  .review-text {
+    font-size: 14px;
+  }
+
+}

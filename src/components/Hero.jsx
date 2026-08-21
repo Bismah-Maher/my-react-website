@@ -82,13 +82,10 @@ function Hero() {
         <div className="food-shadow"></div>
 
         
-     <img
+    <img
   className="hero-burger"
-  src="/images/hero-burger.png"
-  alt="Taste n Health burger"
-  style={{
-    transform: burgerTransform,
-  }}
+  src={`${process.env.PUBLIC_URL}/images/hero-burger.png`}
+  alt="Taste N Health burger"
 />
 
       </div>

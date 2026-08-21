@@ -1,81 +1,46 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Menu.css";
+import products from "./product";
 
-const menuItems = [
+const categories = [
   {
-    id: 1,
-    name: "Classic Royale",
-    category: "Burgers",
-    price: 850,
+    name: "Burger",
+    emoji: "🍔",
     image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800",
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300",
   },
   {
-    id: 2,
-    name: "Cheese Lava",
-    category: "Burgers",
-    price: 950,
+    name: "Pizza",
+    emoji: "🍕",
     image:
-      "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800",
+      "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=300",
   },
   {
-    id: 3,
-    name: "Smoky BBQ Burger",
-    category: "Burgers",
-    price: 1050,
+    name: "Pasta",
+    emoji: "🍝",
     image:
-      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800",
+      "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=300",
   },
   {
-    id: 4,
-    name: "Pepperoni Blast",
-    category: "Pizza",
-    price: 1200,
+    name: "Salad",
+    emoji: "🥗",
     image:
-      "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800",
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300",
   },
   {
-    id: 5,
-    name: "Classic Margherita",
-    category: "Pizza",
-    price: 950,
+    name: "Dessert",
+    emoji: "🍰",
     image:
-      "https://images.unsplash.com/photo-1579751626657-72bc17010498?w=800",
+      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300",
   },
   {
-    id: 6,
-    name: "Loaded Fries",
-    category: "Fries",
-    price: 550,
+    name: "Drinks",
+    emoji: "🥤",
     image:
-      "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800",
-  },
-  {
-    id: 7,
-    name: "Cheese Fries",
-    category: "Fries",
-    price: 650,
-    image:
-      "https://images.unsplash.com/photo-1585109649139-366815a0d713?w=800",
-  },
-  {
-    id: 8,
-    name: "Classic Cola",
-    category: "Drinks",
-    price: 180,
-    image:
-      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=800",
-  },
-  {
-    id: 9,
-    name: "Fresh Lemonade",
-    category: "Drinks",
-    price: 250,
-    image:
-      "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=800",
+      "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=300",
   },
 ];
-
-const categories = ["All", "Burgers", "Pizza", "Fries", "Drinks"];
 
 function Menu() {
   const [category, setCategory] = useState("All");
@@ -84,24 +49,35 @@ function Menu() {
 
   const filteredItems =
     category === "All"
-      ? menuItems
-      : menuItems.filter((item) => item.category === category);
+      ? products
+      : products.filter(
+          (item) => item.category === category
+        );
 
   const addToCart = (item) => {
     setCart((currentCart) => {
-      const existing = currentCart.find(
+      const existingItem = currentCart.find(
         (cartItem) => cartItem.id === item.id
       );
 
-      if (existing) {
+      if (existingItem) {
         return currentCart.map((cartItem) =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + 1,
+              }
             : cartItem
         );
       }
 
-      return [...currentCart, { ...item, quantity: 1 }];
+      return [
+        ...currentCart,
+        {
+          ...item,
+          quantity: 1,
+        },
+      ];
     });
   };
 
@@ -110,7 +86,10 @@ function Menu() {
       currentCart
         .map((item) =>
           item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
             : item
         )
         .filter((item) => item.quantity > 0)
@@ -121,7 +100,10 @@ function Menu() {
     setCart((currentCart) =>
       currentCart.map((item) =>
         item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
           : item
       )
     );
@@ -133,175 +115,339 @@ function Menu() {
   );
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total + item.price * item.quantity,
     0
   );
 
   return (
     <section className="menu-section" id="menu">
 
-      {/* HEADER */}
-      <div className="menu-heading">
-        <div>
-          <p className="menu-label">TASTE N HEALTH</p>
+     
 
-          <h2>
-            Recommended
-            <br />
-            <span>for You</span>
-          </h2>
+
+      {/* ===========================
+          CATEGORIES
+      ============================ */}
+
+      <div className="categories-section">
+
+        <div className="section-heading-row">
+
+          <div>
+
+            <span className="section-label">
+              DISCOVER
+            </span>
+
+            <h3>
+              Categories
+            </h3>
+
+          </div>
+
+          <button
+            className={
+              category === "All"
+                ? "view-all active"
+                : "view-all"
+            }
+            onClick={() => setCategory("All")}
+          >
+            View all →
+          </button>
+
         </div>
 
-        <button
-          className="cart-button"
-          onClick={() => setCartOpen(true)}
-        >
-          🛒 Cart
-          {cartCount > 0 && (
-            <span className="cart-count">{cartCount}</span>
-          )}
-        </button>
-      </div>
 
-      {/* CATEGORY BUTTONS */}
-      <div className="category-row">
-        {categories.map((item) => (
-          <button
-            key={item}
-            className={
-              category === item
-                ? "category-button active"
-                : "category-button"
-            }
-            onClick={() => setCategory(item)}
-          >
-            {item === "All" && "🍽️ "}
-            {item === "Burgers" && "🍔 "}
-            {item === "Pizza" && "🍕 "}
-            {item === "Fries" && "🍟 "}
-            {item === "Drinks" && "🥤 "}
+        <div className="category-scroll">
 
-            {item}
-          </button>
-        ))}
-      </div>
+          {categories.map((item) => (
 
-      {/* FOOD CARDS */}
-      <div className="menu-grid">
-        {filteredItems.map((item) => {
-          const cartItem = cart.find(
-            (cartItem) => cartItem.id === item.id
-          );
+            <button
+              key={item.name}
+              className={
+                category === item.name
+                  ? "category-card active"
+                  : "category-card"
+              }
+              onClick={() =>
+                setCategory(item.name)
+              }
+            >
 
-          return (
-            <article className="food-card" key={item.id}>
+              <div className="category-image">
 
-              <div className="food-image-wrapper">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="food-image"
                 />
 
-                <button className="heart-button">
-                  ♡
-                </button>
               </div>
 
-              <div className="food-info">
+              <span className="category-emoji">
+                {item.emoji}
+              </span>
 
-                <p className="food-category">
-                  {item.category}
-                </p>
+              <span className="category-name">
+                {item.name}
+              </span>
 
-                <h3>{item.name}</h3>
+            </button>
 
-                <div className="food-bottom">
+          ))}
 
-                  <strong>
-                    Rs. {item.price}
-                  </strong>
+        </div>
 
-                  {!cartItem ? (
-                    <button
-                      className="add-button"
-                      onClick={() => addToCart(item)}
-                    >
-                      + Add
-                    </button>
-                  ) : (
-                    <div className="quantity-control">
-
-                      <button
-                        onClick={() =>
-                          decreaseQuantity(item.id)
-                        }
-                      >
-                        −
-                      </button>
-
-                      <span>
-                        {cartItem.quantity}
-                      </span>
-
-                      <button
-                        onClick={() =>
-                          increaseQuantity(item.id)
-                        }
-                      >
-                        +
-                      </button>
-
-                    </div>
-                  )}
-
-                </div>
-              </div>
-
-            </article>
-          );
-        })}
       </div>
 
-      {/* CART POPUP */}
+
+      {/* ===========================
+          POPULAR DISHES
+      ============================ */}
+
+      <div className="popular-section">
+
+        <div className="section-heading-row">
+
+          <div>
+
+            <span className="section-label">
+              OUR FAVORITES
+            </span>
+
+            <h3>
+              Popular Dishes
+            </h3>
+
+          </div>
+
+        </div>
+
+
+        <div className="popular-grid">
+
+          {filteredItems.map((item) => {
+
+            const cartItem = cart.find(
+              (cartItem) =>
+                cartItem.id === item.id
+            );
+
+            return (
+
+              <article
+                className="dish-card"
+                key={item.id}
+              >
+
+                {/* IMAGE */}
+
+                <Link
+                  to={`/product/${item.id}`}
+                  className="dish-image-wrapper"
+                >
+
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="dish-image"
+                  />
+
+                  <button
+                    type="button"
+                    className="favorite-button"
+                    onClick={(e) =>
+                      e.preventDefault()
+                    }
+                  >
+                    ♡
+                  </button>
+
+                  <span className="dish-category">
+                    {item.category}
+                  </span>
+
+                </Link>
+
+
+                {/* CARD CONTENT */}
+
+                <div className="dish-content">
+
+                  <Link
+                    to={`/product/${item.id}`}
+                    className="dish-name-link"
+                  >
+
+                    <h4>
+                      {item.name}
+                    </h4>
+
+                  </Link>
+
+
+                  <p className="dish-description">
+                    {item.description}
+                  </p>
+
+
+                  <div className="dish-bottom">
+
+                    <div className="dish-price">
+
+                      <small>
+                        PRICE
+                      </small>
+
+                      <strong>
+                        Rs. {item.price}
+                      </strong>
+
+                    </div>
+
+
+                    {!cartItem ? (
+
+                      <button
+                        type="button"
+                        className="dish-add-button"
+                        onClick={() =>
+                          addToCart(item)
+                        }
+                      >
+                        <span>
+                          +
+                        </span>
+
+                        Add
+                      </button>
+
+                    ) : (
+
+                      <div className="dish-quantity">
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            decreaseQuantity(
+                              item.id
+                            )
+                          }
+                        >
+                          −
+                        </button>
+
+                        <span>
+                          {cartItem.quantity}
+                        </span>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            increaseQuantity(
+                              item.id
+                            )
+                          }
+                        >
+                          +
+                        </button>
+
+                      </div>
+
+                    )}
+
+                  </div>
+
+                </div>
+
+              </article>
+
+            );
+          })}
+
+        </div>
+
+      </div>
+
+
+      {/* ===========================
+          CART OVERLAY
+      ============================ */}
+
       {cartOpen && (
+
         <div
           className="cart-overlay"
-          onClick={() => setCartOpen(false)}
+          onClick={() =>
+            setCartOpen(false)
+          }
         >
+
           <div
             className="cart-panel"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
             <div className="cart-header">
+
               <div>
-                <p>TASTE N HEALTH</p>
-                <h2>Your Cart</h2>
+
+                <span>
+                  YOUR ORDER
+                </span>
+
+                <h2>
+                  My Cart
+                </h2>
+
               </div>
 
               <button
                 className="close-cart"
-                onClick={() => setCartOpen(false)}
+                onClick={() =>
+                  setCartOpen(false)
+                }
               >
                 ×
               </button>
+
             </div>
 
+
             {cart.length === 0 ? (
+
               <div className="empty-cart">
-                <div>🛒</div>
-                <h3>Your cart is empty</h3>
+
+                <div>
+                  🛒
+                </div>
+
+                <h3>
+                  Your cart is empty
+                </h3>
+
                 <p>
-                  Add something delicious from the menu.
+                  Add something delicious
+                  from our menu.
                 </p>
+
               </div>
+
             ) : (
+
               <>
+
                 <div className="cart-items">
 
                   {cart.map((item) => (
-                    <div className="cart-item" key={item.id}>
+
+                    <div
+                      className="cart-item"
+                      key={item.id}
+                    >
 
                       <img
                         src={item.image}
@@ -309,7 +455,10 @@ function Menu() {
                       />
 
                       <div className="cart-item-info">
-                        <h4>{item.name}</h4>
+
+                        <h4>
+                          {item.name}
+                        </h4>
 
                         <p>
                           Rs. {item.price}
@@ -318,8 +467,11 @@ function Menu() {
                         <div className="cart-quantity">
 
                           <button
+                            type="button"
                             onClick={() =>
-                              decreaseQuantity(item.id)
+                              decreaseQuantity(
+                                item.id
+                              )
                             }
                           >
                             −
@@ -330,58 +482,106 @@ function Menu() {
                           </span>
 
                           <button
+                            type="button"
                             onClick={() =>
-                              increaseQuantity(item.id)
+                              increaseQuantity(
+                                item.id
+                              )
                             }
                           >
                             +
                           </button>
 
                         </div>
+
                       </div>
 
                       <strong>
                         Rs.{" "}
-                        {item.price * item.quantity}
+                        {item.price *
+                          item.quantity}
                       </strong>
 
                     </div>
+
                   ))}
 
                 </div>
 
+
                 <div className="cart-total">
-                  <span>Total</span>
+
+                  <span>
+                    Total
+                  </span>
+
                   <strong>
                     Rs. {cartTotal}
                   </strong>
+
                 </div>
 
-                <button className="checkout-button">
-                  Proceed to Order →
+
+                <button
+                  className="checkout-button"
+                  type="button"
+                >
+                  Proceed to Order
+                  <span>
+                    →
+                  </span>
                 </button>
+
               </>
+
             )}
 
           </div>
+
         </div>
+
       )}
 
-      {/* SMALL CART NOTIFICATION */}
+
+      {/* ===========================
+          FLOATING CART
+      ============================ */}
+
       {cartCount > 0 && (
+
         <button
+          type="button"
           className="floating-cart"
-          onClick={() => setCartOpen(true)}
+          onClick={() =>
+            setCartOpen(true)
+          }
         >
-          <span>🛒</span>
+
+          <span>
+            🛒
+          </span>
 
           <div>
-            <small>{cartCount} item{cartCount > 1 ? "s" : ""} added</small>
-            <strong>View Cart</strong>
+
+            <small>
+              {cartCount}{" "}
+              {cartCount === 1
+                ? "item"
+                : "items"}
+            </small>
+
+            <strong>
+              View Cart
+            </strong>
+
           </div>
 
-          <span>→</span>
+          <span>
+            →
+          </span>
+
         </button>
+
       )}
 
     </section>
